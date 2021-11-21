@@ -1,0 +1,1 @@
+mv /.kube/config ~/.kube/
