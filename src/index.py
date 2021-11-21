@@ -19,14 +19,17 @@ def home():
 @app.route('/pipline', methods=['GET', 'POST'])
 def pipline():
     namespace = request.form['namespace']
-    chartName = request.form['chartname']
+    Duser = request.form['docker-username']
+    Dpass = request.form['docker-password']
+    Ruser = request.form['repo-username']
+    Rpass = request.form['repo-username']
     host = request.form['host']
     repo = request.form['repo']
     tag = request.form['tag']
     reg = request.form['reg']
     branch = request.form['branch']
     ingress = request.form['ingress']
-    ci_cd(namespace,chartName,host,repo,tag,reg,branch,ingress)
+    ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
     return render_template('pipline.html')
 
 

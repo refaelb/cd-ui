@@ -26,12 +26,14 @@ RUN pip3 install azure-cli
 # CMD az login  --username "Ontario-135@greendreamteam.onmicrosoft.com" --password "refael316444058" --tenant "c9ad96a7-2bac-49a7-abf6-8e932f60bf2b" 
 
 ##app##
-WORKDIR /app
+
 COPY . /app
-COPY config /app
+WORKDIR /app
+RUN chmod +x connect.sh
 ENV FLASK_APP=index.py
-COPY ./requirements.txt /app/requirements.txt
-COPY ./connect.sh /app/connect.sh
+# COPY config /app
+# COPY ./requirements.txt /app/requirements.txt
+# COPY ./connect.sh /app/connect.sh
 RUN pip3 install  -r /app/requirements.txt
-CMD [ "./connect.sh" ]
+RUN [ "./connect.sh" ]
 CMD [ "flask", "run", "--host=0.0.0.0"]
