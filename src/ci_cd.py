@@ -1,13 +1,9 @@
 from os import read, write, chdir, system 
 from pathlib import Path
 import yaml
-import argparse
-import re 
-# from createConfigMap import configmap
-import time
 import os
 
-def ci_cd(namespace,chartName,host,repo,tag,reg,branch,ingress):
+def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
   data='''
   replicaCount: 1
 
@@ -94,76 +90,48 @@ def ci_cd(namespace,chartName,host,repo,tag,reg,branch,ingress):
     affinity: {}
 
   """
-  ####varabels####
-  # namespace = ('demo')
-  # chartName = ('test') 
-  # host = ('test') 
-  # repo = ('https://github.com/MomentumTeam/SuperNova.git')
-  # tag = ('0.0.1')
-  # reg = ('refael058325/ci')
-  # branch = ('main')
-  # ingress = False
+ 
   workdir='/app'
-
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
 
   ####ci####
-  username = ('refaelb')
-  pas = ('Refael316444058')
   rep=repo.strip('https://')
-  system('git clone https://{}:{}@{}t'.format(username,pas,rep))
+  system('git clone https://{}:{}@{}t'.format(Ruser,Rpass,rep))
   chdir(imageName)
   system('git checkout '+branch)
 
   ####loop folder####
   p=os.listdir()
-  for i in p:
-      if os.path.isdir(i): 
-          chdir(i)
+  for image in p:
+      if os.path.isdir(image): 
+          chdir(image)
           p=os.listdir()
           if 'Dockerfile' in (p):
               if ingress == p:
                 ingress = True
               else: ingress = False 
-              system('cat /app/pass.txt | docker login --username refael058325 --password-stdin' )
-              system('docker build -t '+reg+':'+i+"."+tag+' .')
-              system('docker push '+reg+':'+i+'.'+tag)
+              system('docker login -u {} -p {}'.format(Duser,Dpass))
+              system('docker build -t '+reg+':'+image+"."+tag+' .')
+              system('docker push '+reg+':'+image+'.'+tag)
               ###deploy###
               Path(workdir+"/home_dir").mkdir(parents=True, exist_ok=True)
               chdir(workdir+"/home_dir")
               system("kubectl create ns {}".format(namespace))
-              system("helm create "+i )
-              confFile = i+"-configmap"
-              file = open(i+"/values.yaml","w+")
-              docs = yaml.load(data.format(reg, i, tag, confFile),  Loader=yaml.FullLoader)
+              system("helm create "+image )
+              confFile = image+"-configmap"
+              file = open(image+"/values.yaml","w+")
+              docs = yaml.load(data.format(reg, image, tag, confFile),  Loader=yaml.FullLoader)
               yaml.dump(docs, file, sort_keys=False)
               # chdir("../")
-              file = open(i+"/values.yaml","a+")
+              file = open(image+"/values.yaml","a+")
               docs = yaml.load(dataService.format("","","","",ingress,host,"","",""),  Loader=yaml.FullLoader)
               yaml.dump(docs, file,sort_keys=False)
               file.close()
-              # chdir("../")
               system('pwd')
               system ('ls -a')
-              system("helm install {} {}  -n {} ".format(i, i, namespace))
+              system("helm install {} {}  -n {} ".format(image, image, namespace))
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
                 
-# configmap(namespace, workdir, imageName)
-
-
-
-
-
-# namespace = ('demo')
-# chartName = ('test') 
-# host = ('test') 
-# repo = ('https://github.com/MomentumTeam/SuperNova.git')
-# tag = ('0.0.1')
-# reg = ('refael058325/ci')
-# branch = ('main')
-# ingress = False
-# workdir='/home/refael/script/ci-cd/src'
-# ci_cd(namespace,chartName,host,repo,tag,reg,branch,ingress)
