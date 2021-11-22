@@ -130,7 +130,12 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               file.close()
               system('pwd')
               system ('ls -a')
-              system("helm install {} {}  -n {} ".format(image, image, namespace))
+              # list=system("helm list -n {} | awk '{print$1}'".format(namespace))
+              list = os.popen("helm list -n {} | awk '{{ print $1 }}'".format(namespace)).read()
+              if image in (list):
+                system("helm upgrade {} {}  -n {} ".format(image, image, namespace))
+              else:
+                system("helm install {} {}  -n {} ".format(image, image, namespace))
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
