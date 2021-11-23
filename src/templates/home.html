@@ -1,21 +1,41 @@
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <form action="/pipline" method="POST">
-            repo : <input id="username" type="text" name="repo"><br>
-            repo-username : <input id="username" type="text" name="repo-username"><br>
-            repo-password : <input id="username" type="text" name="repo-password"><br>
-            branch : <input id="username" type="text" name="branch"><br>
-            reg : <input id="username" type="text" name="reg"><br>
-            docker-username : <input id="username" type="text" name="docker-username"><br>
-            docker-password : <input id="username" type="text" name="docker-password"><br>
-            tag : <input id="username" type="text" name="tag"><br>
-            namespace : <input id="username" type="text" name="namespace"><br>
-            ingress : <input id="username" type="text" name="ingress"><br>
-            host : <input id="username" type="text" name="host"><br>
-            <button onclick="location.href = '/pipline';" >run</button>
-        </form>
-    </body>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>CiCd</title>
+  </head>
+  <body>
+    <form action="/pipline" method="POST">
+        <div class="cards">
+            <div class="card">
+              <label>Repository</label>
+              <input id="username" type="text" name="repo" required />
+              <label>Repo-username</label>
+              <input id="username" type="text" name="repo-username" required/>
+              <label>Repo-password</label>
+              <input id="password" type="text" name="repo-password" required />
+            </div>
+            <div class="card">
+              <label>Branch</label>
+              <input id="branch" type="text" name="branch" />
+              <label>Reg</label>
+              <input id="reg" type="text" name="reg" />
+              <label>Docker-username</label>
+              <input id="docker-username" type="text" name="docker-username" />
+              <label>Docker-password</label>
+              <input id="docker-password" type="text" name="docker-password" />
+            </div>
+            <div class="card">
+              <label>Tag</label>
+              <input id="tag" type="text" name="tag" />
+              <label>Namespace</label>
+              <input id="namespace" type="text" name="namespace" />
+              <label>Ingress</label>
+              <input id="username" type="text" name="ingress" />
+              <label>Host</label>
+              <input id="host" type="text" name="host" />
+            </div>
+        </div>
+      <button onclick="location.href = '/pipline';">Submit</button>
+    </form>
+  </body>
 </html>

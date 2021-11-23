@@ -2,7 +2,7 @@ from os import read, write, chdir, system
 from pathlib import Path
 import yaml
 import os
-
+from configParser import configmap
 def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
   data='''
   replicaCount: 1
@@ -91,7 +91,7 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
 
   """
  
-  workdir='/app'
+  workdir='/home/refael/clones/cd-ui/src'
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
 
@@ -139,4 +139,5 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
-                
+
+  configmap(namespace,workdir,imageName)
