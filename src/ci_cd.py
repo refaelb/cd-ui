@@ -123,14 +123,10 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               file = open(image+"/values.yaml","w+")
               docs = yaml.load(data.format(reg, image, tag, confFile),  Loader=yaml.FullLoader)
               yaml.dump(docs, file, sort_keys=False)
-              # chdir("../")
               file = open(image+"/values.yaml","a+")
               docs = yaml.load(dataService.format("","","","",ingress,host,"","",""),  Loader=yaml.FullLoader)
               yaml.dump(docs, file,sort_keys=False)
               file.close()
-              system('pwd')
-              system ('ls -a')
-              # list=system("helm list -n {} | awk '{print$1}'".format(namespace))
               list = os.popen("helm list -n {} | awk '{{ print $1 }}'".format(namespace)).read()
               if image in (list):
                 system("helm upgrade {} {}  -n {} ".format(image, image, namespace))
@@ -139,5 +135,8 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
-
-  configmap(namespace,workdir,imageName)
+  ##configmap##
+  chdir(workdir+'/home_dir')
+  file = os.listdir()
+  if '{}-configmap.yaml' in p:
+    configmap(namespace,workdir,imageName)
