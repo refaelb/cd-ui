@@ -38,5 +38,6 @@ def configmap(namespace, workdir, imageName ):
             a = yaml.load(file , Loader=loader.BaseLoader)
             yaml.dump(a,fil, sort_keys=False)
     imagename=imageName.lower()
+    os.system('kubectl delete configmap {} -n {}'.format(imagename, namespace))
     os.system('kubectl create configmap {} --from-file={}-configmap.yaml -n {}'.format(imagename, imageName, namespace))   
    

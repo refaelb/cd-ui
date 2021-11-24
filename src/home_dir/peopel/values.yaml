@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: refael058325/ci
+  repository: docker.io/refael058325/ci
   pullPolicy: Always
   tag: peopel.v0.0.1
 imagePullSecrets: []

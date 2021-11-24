@@ -95,6 +95,13 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
 
+  ##configmap##
+  chdir(workdir+'/home_dir')
+  file = os.listdir()
+  c=os.listdir()
+  if '{}-configmap.yaml' in c:
+    configmap(namespace,workdir,imageName)
+
   ####ci####
   rep=repo.strip('https://')
   system('git clone https://{}:{}@{}t'.format(Ruser,Rpass,rep))
@@ -111,7 +118,7 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               if ingress == p:
                 ingress = True
               else: ingress = False 
-              system('docker login -u {} -p {}'.format(Duser,Dpass))
+              system('docker login {} -u {} -p {}'.format(reg,Duser,Dpass))
               system('docker build -t '+reg+':'+image+"."+tag+' .')
               system('docker push '+reg+':'+image+'.'+tag)
               ###deploy###
@@ -135,8 +142,4 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
-  ##configmap##
-  chdir(workdir+'/home_dir')
-  file = os.listdir()
-  if '{}-configmap.yaml' in p:
-    configmap(namespace,workdir,imageName)
+  
