@@ -116,6 +116,7 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               system('docker login {} -u {} -p {}'.format(reg,Duser,Dpass))
               system('docker build -t '+reg+':'+image+"."+tag+' .')
               system('docker push '+reg+':'+image+'.'+tag)
+              system('docker rmi $(docker images)')
               ###deploy###
               Path(workdir+"/home_dir").mkdir(parents=True, exist_ok=True)
               chdir(workdir+"/home_dir")
