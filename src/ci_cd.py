@@ -91,7 +91,8 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
 
   """
  
-  workdir='/home/refael/clones/cd-ui/src'
+  # workdir='/home/refael/clones/cd-ui/src'
+  workdir='/app'
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
 
