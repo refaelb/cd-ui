@@ -90,13 +90,12 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
     affinity: {}
 
   """
- 
-  # workdir='/home/refael/clones/cd-ui/src'
-  workdir='/app'
+
+  workdir='/home/refael/clones/cd-ui/src'
+  # workdir='/app'
+  home='/home/refael/clones/cd-ui/'
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
-
-  
 
   ####ci####
   rep=repo.strip('https://')
@@ -117,10 +116,10 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               system('docker login {} -u {} -p {}'.format(reg,Duser,Dpass))
               system('docker build -t '+reg+':'+image+"."+tag+' .')
               system('docker push '+reg+':'+image+'.'+tag)
-              system('docker rmi $(docker images)')
+              # system('docker rmi $(docker images)')
               ###deploy###
-              Path(workdir+"/home_dir").mkdir(parents=True, exist_ok=True)
-              chdir(workdir+"/home_dir")
+              Path(home+"/home_dir").mkdir(parents=True, exist_ok=True)
+              chdir(home+"/home_dir")
               system("kubectl create ns {}".format(namespace))
               system("helm create "+image )
               confFile = image+"-configmap"
@@ -140,4 +139,4 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
           else:
               chdir('./..')
   ##configmap##
-  configmap(namespace,workdir,imageName)
+  configmap(namespace,workdir,imageName,home)

@@ -31,6 +31,7 @@ COPY . /app
 WORKDIR /app
 RUN chmod +x connect.sh
 ENV FLASK_APP=index.py
+VOLUME ./../home_dir /home_dir
 # COPY config /app
 # COPY ./requirements.txt /app/requirements.txt
 # COPY ./connect.sh /app/connect.sh

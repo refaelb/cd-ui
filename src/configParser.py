@@ -4,7 +4,7 @@ import fileinput
 import yaml
 from yaml import loader
 
-def configmap(namespace, workdir, imageName ):
+def configmap(namespace, workdir, imageName , home):
     os.chdir(workdir)
     os.system('pwd')
     os.chdir(workdir+'/'+imageName)
@@ -14,16 +14,16 @@ def configmap(namespace, workdir, imageName ):
     if '.env' in file:
         os.chdir(workdir+'/'+imageName)
         env = open(file,"r+").read() 
-        data = open(workdir+"/home_dir/"+imageName+"-test-configmap.yaml","w+")
+        data = open(home+"/home_dir/"+imageName+"-test-configmap.yaml","w+")
         tab = ""
         data.write(tab+ str(env))
-    os.chdir(workdir+'/home_dir')
+    os.chdir(home+'/home_dir')
     o=os.listdir()
     if imageName in o:
-        os.chdir(workdir+'/home_dir/'+imageName)
+        os.chdir(home+'/home_dir/'+imageName)
         d=os.listdir()
         if imageName+'-configmap.yaml' in d:
-            for i, line in enumerate(fileinput.input(workdir+'/home_dir/'+imageName+'-test-configmap.yaml', inplace=1)):
+            for i, line in enumerate(fileinput.input(home+'/home_dir/'+imageName+'-test-configmap.yaml', inplace=1)):
                 sys.stdout.write(line.replace('=', ': '))  
 
             configmap="""
@@ -34,12 +34,12 @@ def configmap(namespace, workdir, imageName ):
                 namespace: {}
             data:
                 master: refael """.format(imageName, namespace, )
-            os.chdir(workdir+'/home_dir/')
+            os.chdir(home+'/home_dir/')
             with open(imageName+'-configmap.yaml', 'w+' ) as file:
                 docs = yaml.load(configmap,  Loader=yaml.BaseLoader)
                 yaml.dump(docs, file, sort_keys=False)
-            with open(workdir+'/home_dir/'+imageName+'-test-configmap.yaml','r+')as file:
-                with open(workdir+'/home_dir/'+imageName+'-configmap.yaml','a+')as fil:
+            with open(home+'/home_dir/'+imageName+'-test-configmap.yaml','r+')as file:
+                with open(home+'/home_dir/'+imageName+'-configmap.yaml','a+')as fil:
                     a = yaml.load(file , Loader=loader.BaseLoader)
                     yaml.dump(a,fil, sort_keys=False)
             imagename=imageName.lower()
