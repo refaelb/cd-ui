@@ -35,7 +35,14 @@
               <input id="host" type="text" name="host" required />
             </div>
         </div>
-      <input type="submit" value="Submit" id="submit"></input>
+      <!-- <input type="submit" value="Submit" id="submit" ></input> -->
+      <input type="submit" name="Submit"  id="submit" value="Submit" onclick="loading();">
+    <script type="text/javascript">// <![CDATA[
+      function loading(){
+          $("#loading").show();
+          $("#content").hide();       
+      }
+// ]]></script>
     </form>
   </body>
 </html>
