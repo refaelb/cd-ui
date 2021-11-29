@@ -1,10 +1,11 @@
 <html>
   <head>
-    <link rel="stylesheet" href="./../static/styles/style.css">
+    <link rel="stylesheet" href="./../static/styles/style.css" id="content" >
     <title>CiCd</title>
   </head>
   <body>
-    <form action="/pipline" method="POST">
+    <div id="loading"></div>
+    <form action="/pipline" method="POST" id="content">
         <div class="cards">
             <div class="card">
               <label>Repository</label>
@@ -35,14 +36,14 @@
               <input id="host" type="text" name="host" required />
             </div>
         </div>
-      <!-- <input type="submit" value="Submit" id="submit" ></input> -->
-      <input type="submit" name="Submit"  id="submit" value="Submit" onclick="loading();">
-    <script type="text/javascript">// <![CDATA[
-      function loading(){
-          $("#loading").show();
-          $("#content").hide();       
-      }
-// ]]></script>
+        <input type="submit" value="Submit" id="submit" onsubmit="loading()">
+        <script type="text/javascript">// <![CDATA[
+          function loading(){
+              document.getElementById("loading").style.display = "inline";
+              document.getElementById("content").style.display = "none";
+          }//preloader
+          window.onload = loading();
+  // ]]></script>
     </form>
   </body>
 </html>

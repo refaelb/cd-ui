@@ -99,6 +99,7 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
 
   ####ci####
   rep=repo.strip('https://')
+  chdir(workdir)
   system('git clone https://{}:{}@{}t'.format(Ruser,Rpass,rep))
   chdir(imageName)
   system('git checkout '+branch)
@@ -131,7 +132,9 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               yaml.dump(docs, file,sort_keys=False)
               file.close()
               list = os.popen("helm list -n {} | awk '{{ print $1 }}'".format(namespace)).read()
-              if image in (list):
+              print(list)
+              print (image)
+              if image in list:
                 system("helm upgrade {} {}  -n {} ".format(image, image, namespace))
               else:
                 system("helm install {} {}  -n {} ".format(image, image, namespace))

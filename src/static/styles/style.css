@@ -47,7 +47,7 @@ label {
   text-align: left;
 }
 
-div#loading {
+#loading {
   width: 35px;
   height: 35px;
   display: none;
