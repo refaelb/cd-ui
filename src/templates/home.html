@@ -1,49 +1,48 @@
 <html>
   <head>
-    <link rel="stylesheet" href="./../static/styles/style.css" id="content" >
+    <link rel="stylesheet" href="./../static/styles/style.css" >
     <title>CiCd</title>
   </head>
-  <body>
-    <div id="loading"></div>
+  <body>      
     <form action="/pipline" method="POST" id="content">
-        <div class="cards">
-            <div class="card">
-              <label>Repository</label>
-              <input id="username" type="text" name="repo" required />
-              <label>Repo-username</label>
-              <input id="username" type="text" name="repo-username" required/>
-              <label>Repo-password</label>
-              <input id="password" type="text" name="repo-password" required />
-              <label>Branch</label>
-              <input id="branch" type="text" name="branch" required />
-            </div>
-            <div class="card">
-              <label>Reg</label>
-              <input id="reg" type="text" name="reg" required />
-              <label>Docker-username</label>
-              <input id="docker-username" type="text" name="docker-username" required />
-              <label>Docker-password</label>
-              <input id="docker-password" type="text" name="docker-password" required />
-              <label>Tag</label>
-              <input id="tag" type="text" name="tag" required />
-            </div>
-            <div class="card">
-              <label>Namespace</label>
-              <input id="namespace" type="text" name="namespace" required />
-              <label>Ingress</label>
-              <input id="username" type="text" name="ingress" required />
-              <label>Host</label>
-              <input id="host" type="text" name="host" required />
-            </div>
+      <div class="cards" id="content">
+        <div class="card">
+          <label>Repository</label>
+          <input id="username" type="text" name="repo"  required />
+          <label>Repo-username</label>
+          <input id="username" type="text" name="repo-username" required />
+          <label>Repo-password</label>
+          <input id="password" type="text" name="repo-password"  required />
+          <label>Branch</label>
+          <input id="branch" type="text" name="branch"  required />
         </div>
-        <input type="submit" value="Submit" id="submit" onsubmit="loading()">
-        <script type="text/javascript">// <![CDATA[
+          <div class="card">
+            <label>Reg</label>
+            <input id="reg" type="text" name="reg"  required />
+            <label>Docker-username</label>
+            <input id="docker-username" type="text" name="docker-username"  required />
+            <label>Docker-password</label>
+            <input id="docker-password" type="text" name="docker-password"  required />
+            <label>Tag</label>
+            <input id="tag" type="text" name="tag"  required />
+          </div>
+          <div class="card">
+            <label>Namespace</label>
+            <input id="namespace" type="text" name="namespace"  required />
+            <label>Ingress</label>
+            <input id="username" type="text" name="ingress"  required />
+            <label>Host</label>
+            <input id="host" type="text" name="host"  required />
+          </div>
+        </div>
+        <input type="submit" value="Submit" id="submit" onclick="loading()" >
+        <div id="loading"></div>
+        <script type="text/javascript">
           function loading(){
-              document.getElementById("loading").style.display = "inline";
-              document.getElementById("content").style.display = "none";
-          }//preloader
-          window.onload = loading();
-  // ]]></script>
+            console.log('start of loading....')
+            document.getElementById("loading").className = "loadingbackground";
+          }
+            </script>
     </form>
   </body>
 </html>
