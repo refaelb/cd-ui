@@ -119,8 +119,8 @@ def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
               system('docker push '+reg+':'+image+'.'+tag)
               # system('docker rmi $(docker images)')
               ###deploy###
-              Path(home+"/home_dir").mkdir(parents=True, exist_ok=True)
-              chdir(home+"/home_dir")
+              Path(home+"/home_dir/"+imageName).mkdir(parents=True, exist_ok=True)
+              chdir(home+"/home_dir/"+imageName)
               system("kubectl create ns {}".format(namespace))
               system("helm create "+image )
               confFile = image+"-configmap"
