@@ -1,14 +1,16 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: url(devops.png) no-repeat center fixed;
-  background-size: cover;
+  background-size:cover;
+  max-width: 100%;
+
 }
 
 
 .loadingbackground {
   background: url(Infinity-1s-200px.gif);
-  /* background-color: red; */
-  margin: auto;
+  margin-left: 44.5%;
+  margin-top: 5px;
   text-align: center;
   width: 200px;
   height: 200px;
@@ -18,26 +20,31 @@ body {
   padding: 20px;
   border: 2px solid rgb(170, 170, 149);
   background-color: #d2d1d3;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 100%;
+  margin-left: 30px;
+  margin-top: 100px;
+  max-width: 12%;
   text-align: center;
   border-radius: 5px;
 }
 
 .cards {
   display: flex;
-  width: 50rem;
-  margin: 2rem auto;
+  width: 100%;
+  margin: auto;
+  margin-left: 25%;
+  margin-top: 2%;
+  background-size: cover;
 }
 
 #submit {
-  margin-left: 49%;
+  margin-left: 47%;
+  margin-top: 50px;
   padding: 10px 30px;
   background-color: green;
   font-size: 1rem;
   border-radius: 10px;
   color: #fff;
+  max-width: 15%;
 }
 #submit:hover {
   opacity: 0.7;
@@ -47,6 +54,7 @@ input {
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  max-width: 100%;
 }
 
 label {
@@ -55,13 +63,4 @@ label {
   margin-top: 0.8rem;
   display: block;
   text-align: left;
-}
-
-#loading {
-  /* width: 150px;
-  height: 150px; */
-  /* display: none; */
-  /* background: url("devops.png") no-repeat; */
-  cursor: wait;
-  margin: auto;
 }
