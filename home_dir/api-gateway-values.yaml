@@ -1,0 +1,19 @@
+name: api-gateway
+replicaCount: 1
+images:
+  repository: docker.io/refael058325/ci
+  tag: api-gateway.v0.0.1
+service:
+  ports:
+  - name: http
+    port: '3000'
+configmap:
+  configmaps: api-gateway-configmap
+ingress:
+  enabled: false
+  hosts:
+  - host: test
+    paths:
+    - path: peth
+      service: test
+      port: 80

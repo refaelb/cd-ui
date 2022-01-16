@@ -1,0 +1,19 @@
+name: mail-service
+replicaCount: 1
+images:
+  repository: docker.io/refael058325/ci
+  tag: mail-service.v0.0.1
+service:
+  ports:
+  - name: http
+    port: '3000'
+configmap:
+  configmaps: mail-service-configmap
+ingress:
+  enabled: false
+  hosts:
+  - host: test
+    paths:
+    - path: peth
+      service: test
+      port: 80

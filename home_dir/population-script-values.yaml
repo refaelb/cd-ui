@@ -1,0 +1,19 @@
+name: population-script
+replicaCount: 1
+images:
+  repository: docker.io/refael058325/ci
+  tag: population-script.v0.0.1
+service:
+  ports:
+  - name: http
+    port: '3000'
+configmap:
+  configmaps: population-script-configmap
+ingress:
+  enabled: false
+  hosts:
+  - host: test
+    paths:
+    - path: peth
+      service: test
+      port: 80

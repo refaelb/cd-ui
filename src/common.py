@@ -21,7 +21,7 @@ images:
   #pullPolicy: Always
   # PullSecrets: [test, test2]
   repository: {}
-  tag: {}
+  tag: {}.{}
 
 service:
   ports:
@@ -111,7 +111,7 @@ ingress:
 
   """
 
-  workdir='/home/refael/clones/cd-ui/src'
+  workdir='/home/refael/clones/cd-ui/'
   # workdir='/app'
   home='/home/refael/clones/cd-ui/'
   a = repo.rsplit('.',1)[0]
@@ -125,13 +125,13 @@ ingress:
   system('git checkout '+branch)
 
   ####loop folder####
-  p=os.listdir()
-  for image in p:
+  pp=os.listdir()
+  for image in pp:
       if os.path.isdir(image): 
           chdir(image)
           p=os.listdir()
           if 'Dockerfile' in (p):
-              if ingress == p:
+              if ingress == image:
                 ingress = True
               else: ingress = False 
               system('docker login {} -u {} -p {}'.format(reg,Duser,Dpass))
@@ -139,20 +139,16 @@ ingress:
               system('docker push '+reg+':'+image+'.'+tag)
               # system('docker rmi $(docker images)')
               ###deploy###
-              system('pwd')
-              system('cd '+workdir+'./../home_dir')
-              chdir(workdir+'/../home_dir')
+              chdir(workdir+'/home_dir')
               f = open (image+'-values.yaml', 'a+')
               confFile = image+"-configmap"
               file = open(image+"-values.yaml","w+")
-              docs = yaml.load(read.format(image,reg,tag,confFile,ingress,host,"peth"),  Loader=yaml.FullLoader)
+              docs = yaml.load(read.format(image,reg,image,tag,confFile,ingress,host,"peth"),  Loader=yaml.FullLoader)
               yaml.dump(docs, file, sort_keys=False)
               file.close()
-              system('pwd')
               system("kubectl create ns {}".format(namespace))
               list = os.popen("helm list -n {} | awk '{{ print $1 }}'".format(namespace)).read()
               print(list)
-              print (image)
               if image in list:
                 system("helm upgrade {} common  -n {} -f {}-values.yaml".format(image,  namespace, image))
               else:
