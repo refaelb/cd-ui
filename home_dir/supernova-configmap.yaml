@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: SuperNovaConfigMap
+  name: supernova-configmap
   namespace: refael
 data:
   master: refael

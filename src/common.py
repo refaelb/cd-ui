@@ -146,7 +146,11 @@ ingress:
               docs = yaml.load(read.format(image,reg,image,tag,confFile,ingress,host,"peth"),  Loader=yaml.FullLoader)
               yaml.dump(docs, file, sort_keys=False)
               file.close()
-              system("kubectl create ns {}".format(namespace))
+              f = os.popen("kubectl get ns | awk '{{ print $1 }}'").read()
+              if namespace in f :
+                  print(namespace)
+              else:
+                  system("kubectl create ns {}".format(namespace))
               list = os.popen("helm list -n {} | awk '{{ print $1 }}'".format(namespace)).read()
               print(list)
               if image in list:
