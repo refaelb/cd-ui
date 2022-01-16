@@ -160,5 +160,5 @@ ingress:
               chdir(workdir+'/'+imageName)
           else:
               chdir('./..')
-  ##configmap##
-#   configmap(namespace,workdir,imageName,home)
+  #configmap##
+  configmap(namespace,workdir,imageName,home)
