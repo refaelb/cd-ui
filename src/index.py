@@ -1,7 +1,7 @@
 from os import name, system
 from flask import render_template
 from flask import request
-from ci_cd import ci_cd
+from common import ci_cd
 from flask import Flask
 import json
 app = Flask(__name__)
