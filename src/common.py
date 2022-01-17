@@ -2,16 +2,14 @@ from os import read, write, chdir, system
 from pathlib import Path
 import yaml
 import os
-from configParser import configmap
+from createConfigMAp import configmap
 def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
   read = """
  #Enter your microsevice's name here.
-
 name: {}
 # If you want to overide the full name you can include the 'fullnameOverride' value
 #fullname:
 replicaCount: 1
-
 images:
   ##########################################################
   #.pullPolicy value is not required,
@@ -22,7 +20,6 @@ images:
   # PullSecrets: [test, test2]
   repository: {}
   tag: {}.{}
-
 service:
   ports:
     - name: http
@@ -46,7 +43,6 @@ service:
       #.targetPort value is not required, its default value is '.port's value.
       #######################################################################
       # targetPort: "5555"
-
 configmap:
   configmaps: {}
   ##################################################################################
@@ -67,8 +63,6 @@ configmap:
 #####################################################################
 # serviceAccount:
 #   annotations: "rer"
-
-
 #####################################################################
 # If you want to add volume,
 #please uncomment the following lines and add the dsired annotation.
@@ -81,14 +75,10 @@ configmap:
 #   #   shareName: momentum/utils
 #     type: configMap
 #     configMapsName: test
-
-
-
 ####################################################################################
 #Ingress funcionallity is disabled bydefault,
 #to enable it, please uncomment the ingress block and fill it with your information.
 ####################################################################################
-
 ingress:
   enabled: {}
   hosts:
@@ -105,10 +95,7 @@ ingress:
 #    - hosts:
 #      - examplehostname.com
 #      secretName: tls-secret-example
-
 #resources: rer
-
-
   """
 
   workdir='/home/refael/clones/cd-ui/'
@@ -161,4 +148,4 @@ ingress:
           else:
               chdir('./..')
   #configmap##
-  configmap(namespace,workdir,imageName,home)
+  configmap(namespace,workdir,imageName)
