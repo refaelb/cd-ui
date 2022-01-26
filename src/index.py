@@ -33,25 +33,27 @@ def pipline():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        a = request.json
-        b = json.dumps(a)
-        storedata = json.loads(b)
-        li=[]
-        for val in storedata:
-            v = storedata[val]
-            li.append(v)
-        namespace = li[0]
-        host = li[1]
-        repo = li[2]
-        tag = li[3]
-        reg = li[4]
-        branch = li[5]
-        ingress = li[6]
-        Ruser = li[7]
-        Rpass = li[8]
-        Duser = li[9]
-        Dpass = li[10]
-        ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
+        print(request.data)
+        # a = request.json
+        # b = json.dumps(a)
+        # storedata = json.loads(b)
+        # li=[]
+        # for val in storedata:
+        #     v = storedata[val]
+        #     li.append(v)
+        # namespace = li[0]
+        # host = li[1]
+        # repo = li[2]
+        # tag = li[3]
+        # reg = li[4]
+        # branch = li[5]
+        # ingress = li[6]
+        # Ruser = li[7]
+        # Rpass = li[8]
+        # Duser = li[9]
+        # Dpass = li[10]
+        # ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
+        print('ok')
 
         return 'success', 200
     else:
