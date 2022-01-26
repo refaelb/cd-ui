@@ -35,8 +35,8 @@ def pipline():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        raw_data = request.headers
-        print(raw_data)
+        req_data = request.get_json(force=True)
+        print(req_data)
 
         # print (d)
         print ('work')
