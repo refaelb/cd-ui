@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from common import ci_cd
 from flask import Flask
+import yaml
 import json
 app = Flask(__name__)
 
@@ -35,6 +36,8 @@ def webhook():
     if request.method == 'POST':
         print(request.data)
         print ('work')
+        with open('test.txt','a+')as till:
+            yaml.dump(request.data,till)
         # a = request.json
         # b = json.dumps(a)
         # storedata = json.loads(b)
