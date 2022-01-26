@@ -34,6 +34,7 @@ def pipline():
 def webhook():
     if request.method == 'POST':
         print(request.data)
+        print ('work')
         # a = request.json
         # b = json.dumps(a)
         # storedata = json.loads(b)
