@@ -1,4 +1,5 @@
 from os import name, system
+from urllib import response
 from flask import render_template
 from flask import request
 from common import ci_cd
@@ -34,10 +35,14 @@ def pipline():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        print(request.data)
+        raw_data = request.headers
+        print(raw_data)
+
+        # print (d)
         print ('work')
-        with open('test.txt','a+')as till:
-            yaml.dump(request.data,till)
+        # with open('test.txt','a+')as till:
+        #     yaml.dump(request.json,till)
+     
         # a = request.json
         # b = json.dumps(a)
         # storedata = json.loads(b)
@@ -49,7 +54,7 @@ def webhook():
         # host = li[1]
         # repo = li[2]
         # tag = li[3]
-        # reg = li[4]
+        # reg = li[4] 
         # branch = li[5]
         # ingress = li[6]
         # Ruser = li[7]
@@ -57,7 +62,7 @@ def webhook():
         # Duser = li[9]
         # Dpass = li[10]
         # ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
-        print('ok')
+        
 
         return 'success', 200
     else:
