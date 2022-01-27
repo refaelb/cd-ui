@@ -27,7 +27,8 @@ def pipline():
     reg = request.form['reg']
     branch = request.form['branch']
     ingress = request.form['ingress']
-    ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
+    token = request.form['token']
+    ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
     return render_template('pipline.html')
 
 
