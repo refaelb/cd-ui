@@ -34,15 +34,9 @@ def pipline():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    # print(request.data)
-    data = request.json
-    # print(request.data)
-    if request.headers['Content-Type'] == 'application/json':
-        my_shit = json.dumps(request.json)
-        print (my_shit)
-    # print(data)
-    # print('shitt')
-    # # return jsonify(data)
+    data = request.json    
+    print(data)
+    return jsonify(data)
     # # return (jsonify(data))
     # print(json.dumps(data,indent=4))
     # return(json(data))
