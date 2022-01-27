@@ -36,8 +36,7 @@ def pipline():
 def webhook():
     # print(request.data)
     data = request.json
-    print(jsonify(data))
-    print(request.data)
+    # print(request.data)
     print(data)
     return jsonify(data)
     # return (jsonify(data))
