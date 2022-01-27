@@ -37,6 +37,7 @@ def webhook():
     # print(request.data)
     data = request.json
     print(jsonify(data))
+    print(data)
     return jsonify(data)
     # return (jsonify(data))
     return(json(data))
