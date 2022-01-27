@@ -40,7 +40,8 @@ def webhook():
         yaml.dump(request.json,till)
         a = request.json
         b = json.dumps(a)
-    return jsonify(data)
-    
+    # return jsonify(data)
+    return('ok')
+
 if __name__ == '__main__':
     app.run(debug=True)
