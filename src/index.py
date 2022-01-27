@@ -36,43 +36,11 @@ def pipline():
 def webhook():
     data = request.json    
     print(data)
-
-    # # return (jsonify(data))
-    # print(json.dumps(data,indent=4))
-    # return(json(data))
-    # if request.method == 'POST':
-    #     req_data = request.json(force=True)
-    #     print(req_data)
-
-        # print (d)
-    #     print ('work')
-    with open('test.txt','a+')as till:
+    with open('test.txt','w+')as till:
         yaml.dump(request.json,till)
         a = request.json
         b = json.dumps(a)
     return jsonify(data)
-        # storedata = json.loads(b)
-        # li=[]
-        # for val in storedata:
-        #     v = storedata[val]
-        #     li.append(v)
-        # namespace = li[0]
-        # host = li[1]
-        # repo = li[2]
-        # tag = li[3]
-        # reg = li[4] 
-        # branch = li[5]
-        # ingress = li[6]
-        # Ruser = li[7]
-        # Rpass = li[8]
-        # Duser = li[9]
-        # Dpass = li[10]
-        # ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass)
-        
-
-    #     return 'success', 200
-    # else:
-    #     return('err')
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
