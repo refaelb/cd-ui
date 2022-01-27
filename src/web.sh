@@ -10,7 +10,7 @@ curl -u 'refaelb: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' \
   -d '{
     "type": "Repository",
     "id": 12345678,
-    "namespace": "shit",
+    "namespace": "shitt",
     "name": "web",
     "active": true,
     "events": [
