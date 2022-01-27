@@ -4,12 +4,13 @@
 #   -H "Accept: application/vnd.github.v3+json" \
 #   -d '{"name":"re"}' \
 #   'https://api.github.com/refaelb/cd-ui/settings/hooks/'
-curl -u 'refaelb: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' \
+curl -u 'refaelb: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' \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   -d '{
     "type": "Repository",
     "id": 12345678,
+    "namespace": "shit",
     "name": "web",
     "active": true,
     "events": [
