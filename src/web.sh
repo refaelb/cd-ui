@@ -25,7 +25,7 @@ curl -u 'refaelb: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' \
       "status": "unused",
       "namespace": "shit",
       "message": {
-        "namespace": "shit"
+        "namespace": "shitt"
       }
     }
   }' \
