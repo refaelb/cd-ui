@@ -37,12 +37,15 @@ def webhook():
     # print(request.data)
     data = request.json
     # print(request.data)
-    print(data)
-    print('shitt')
-    # return jsonify(data)
-    # return (jsonify(data))
-    print(json.dumps(data,indent=4))
-    return(json(data))
+    if request.headers['Content-Type'] == 'application/json':
+        my_shit = json.dumps(request.json)
+        print (my_shit)
+    # print(data)
+    # print('shitt')
+    # # return jsonify(data)
+    # # return (jsonify(data))
+    # print(json.dumps(data,indent=4))
+    # return(json(data))
     # if request.method == 'POST':
     #     req_data = request.json(force=True)
     #     print(req_data)
