@@ -36,8 +36,7 @@ def pipline():
 def webhook():
     data = request.json    
     print(data)
-    return jsonify(data)
-    
+
     # # return (jsonify(data))
     # print(json.dumps(data,indent=4))
     # return(json(data))
@@ -47,11 +46,11 @@ def webhook():
 
         # print (d)
     #     print ('work')
-        # with open('test.txt','a+')as till:
-        #     yaml.dump(request.json,till)
-     
-        # a = request.json
-        # b = json.dumps(a)
+    with open('test.txt','a+')as till:
+        yaml.dump(request.json,till)
+        a = request.json
+        b = json.dumps(a)
+    return jsonify(data)
         # storedata = json.loads(b)
         # li=[]
         # for val in storedata:
