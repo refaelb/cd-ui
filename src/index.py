@@ -37,6 +37,7 @@ def pipline():
 def webhook():
     data = request.json    
     print(data)
+    
     with open('test.txt','w+')as till:
         yaml.dump(request.json,till)
         a = request.json
