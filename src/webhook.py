@@ -39,4 +39,4 @@ def creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,
 
     print(response.text)
 
-creaeteWebhook("namespace","host","repo","tag","reg","branch","ingress","Ruser","Rpass","Duser","Dpass")
+creaeteWebhook("namespace","host","repo","tag","reg","branch","ingress","Ruser","Rpass","Duser","Dpass","imageName","token")
