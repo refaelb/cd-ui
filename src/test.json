@@ -1,0 +1,25 @@
+{
+    "type": "Repository",
+    "id": 12345678,
+    "name": "web",
+    "active": "True",
+    "events": [
+        "push"
+    ],
+    "config": {
+        "content_type": "text",
+        "insecure_ssl": "false",
+        "url": "http://52.170.32.128:5000/webhook",
+        "namespace": "{namespace}",
+        "tag": "{tag}",
+        "repo": "{repo}",
+        "Ruser": "{Ruser}",
+        "Rpass": "{Rpass}",
+        "ingress": "{ingress}",
+        "branch": "{branch}",
+        "host": "{host}",
+        "reg": "{reg}",
+        "pass": "{Duser}",
+        "Dpass": "{Dpass}"
+    }
+}
