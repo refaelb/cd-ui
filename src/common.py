@@ -2,7 +2,7 @@ from os import read, write, chdir, system
 from pathlib import Path
 import yaml
 import os
-from createConfigMAp import configmap
+from createConfigMAp import *
 from webhook import creaeteWebhook
 
 def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token):

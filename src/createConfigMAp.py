@@ -1,7 +1,7 @@
 from email.mime import image
 import os
 from yaml import loader
-from webhook import creaeteWebhook
+from webhook import *
 def configmap(namespace, workdir, imageName ):
     Imagename=imageName.lower()
     os.chdir(workdir)

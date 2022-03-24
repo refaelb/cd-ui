@@ -1,13 +1,16 @@
-from os import name, system
-from urllib import response
-from flask import jsonify, render_template
+from os import name
+from flask import render_template
 from flask import request
-from common import ci_cd
+from common import *
 from flask import Flask
+from flask import Flask, request
 import yaml
 import json
-app = Flask(__name__)
+from validate import validate
+from webhook import *
 
+
+app = Flask(__name__)
 
 @app.route('/' , methods=['GET','POST'])
 def home():
@@ -28,24 +31,21 @@ def pipline():
     branch = request.form['branch']
     ingress = request.form['ingress']
     token = request.form['token']
-    ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
+    # ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
+    creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
+
     return render_template('pipline.html')
 
 
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    data = request.json    
+    data = (request.data) 
     print(data)
-    # print (request.get_data)
+    print ("its work")
+    validate(data)
 
-    with open('test.txt','w+')as till:
-        yaml.dump(request.json,till)
-        a = request.json
-        b = json.dumps(a)
-        # print (response.data)
-    # return jsonify(data)
-    return('okkk')
+    return('ok')
 
 if __name__ == '__main__':
     app.run(debug=True)
