@@ -6,7 +6,7 @@ from flask import Flask
 from flask import Flask, request
 import yaml
 import json
-from validate import validate
+from validate import *
 from webhook import *
 
 

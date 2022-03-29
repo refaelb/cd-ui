@@ -1,5 +1,6 @@
 import requests
 import json
+from common import *
 import index
 from common import *
 def creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,imageName,token):

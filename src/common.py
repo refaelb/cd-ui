@@ -5,7 +5,7 @@ import os
 from createConfigMAp import *
 from webhook import creaeteWebhook
 
-def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token):
+def ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass):
   read = """
  #Enter your microsevice's name here.
 name: {}
@@ -105,7 +105,7 @@ ingress:
   home='/home/refael/clones/cd-ui/'
   a = repo.rsplit('.',1)[0]
   imageName = a.rsplit('/',3)[3]
-  creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,imageName,token)
+  # creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,imageName,token)
   ####ci####
   rep=repo.strip('https://')
   chdir(workdir)
