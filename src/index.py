@@ -1,7 +1,7 @@
 from os import name
 from flask import render_template
 from flask import request
-from common import *
+# from ci_cd import *
 from flask import Flask
 from flask import Flask, request
 import yaml
@@ -43,9 +43,9 @@ def webhook():
     data = (request.data) 
     print(data)
     print ("its work")
+    # validate(data)
+    return ("ok")
     validate(data)
-
-    return('ok')
 
 if __name__ == '__main__':
     app.run(debug=True)

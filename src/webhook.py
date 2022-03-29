@@ -1,9 +1,11 @@
 import requests
 import json
-from common import *
+# import ci_cd
 import index
-from common import *
-def creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,imageName,token):
+def creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token):
+    a = repo.rsplit('.',1)[0]
+    imageName = a.rsplit('/',3)[3]
+    print (imageName)
     url = "https://api.github.com/repos/{}/{}/hooks".format(Ruser,imageName)
     payload = json.dumps({
     "type": "Repository",
@@ -38,7 +40,7 @@ def creaeteWebhook(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,
     response = requests.request("POST", url, headers=headers, data=payload)
 
     print(response.text)
-    ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
+    # ci_cd(namespace,host,repo,tag,reg,branch,ingress,Ruser,Rpass,Duser,Dpass,token)
 
 
 # creaeteWebhook("namespace","host","repo","tag","reg","branch","ingress","refaelb","Rpass","Duser","Dpass","ci-cd","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") 
