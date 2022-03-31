@@ -1,19 +1,13 @@
-name: peopel
-replicaCount: 1
-images:
-  repository: docker.io/refael058325/ci
-  tag: peopel.v0.0.1
-service:
-  ports:
-  - name: http
-    port: '3000'
-configmap:
-  configmaps: peopel-configmap
+configmap: {configmaps: peopel-configmap}
+images: {repository: docker.io/refael058325/ci, tag: peopel.v0.0.1}
 ingress:
   enabled: false
   hosts:
   - host: test
     paths:
-    - path: peth
-      service: test
-      port: 80
+    - {path: peth, port: 80, service: test}
+name: peopel
+replicaCount: 1
+service:
+  ports:
+  - {name: http, port: '3000'}

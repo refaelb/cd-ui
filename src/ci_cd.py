@@ -132,8 +132,8 @@ ingress:
               f = open (image+'-values.yaml', 'a+')
               confFile = image+"-configmap"
               file = open(image+"-values.yaml","w+")
-              docs = yaml.load(read.format(image,reg,image,tag,confFile,ingress,host,"peth"),  Loader=yaml.FullLoader)
-              yaml.dump(docs, file, sort_keys=False)
+              docs = yaml.load(read.format(image,reg,image,tag,confFile,ingress,host,"peth"))
+              yaml.dump(docs, file)
               file.close()
               f = os.popen("kubectl get ns | awk '{{ print $1 }}'").read()
               if namespace in f :
